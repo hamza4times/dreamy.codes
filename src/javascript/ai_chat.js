@@ -15,7 +15,7 @@ document
             "html": "...",
             "css": "...",
             "js": "...",
-            "extra txt": "..."
+            "extra_txt": "..."
           }
           `;
 
@@ -23,6 +23,7 @@ document
       reply = reply.replace(/^```json\s*/i, "").replace(/^```\s*/i, "").replace(/\s*```$/, "");
       const code = JSON.parse(reply);
       updateCodeEditors(code);
+      console.log(String(code.extra_txt));
     } catch (err) {
       console.error(err);
     }
