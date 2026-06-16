@@ -1,5 +1,50 @@
-#editor {
-  height: 800px;
+body{
+  display: grid;
+  grid-template-columns: 25% 75%;
+  grid-template-rows: 1fr;
+}
+
+.editor-container {
+  height: 600px;
   border: 1px solid #ddd;
-  margin-top: 20px;
+  background-color: antiquewhite;
+  grid-column: 2;
+  grid-row: 1;
+}
+
+#editor {
+  margin-top: 10px;
+  height: 100%;
+  width: 100%;
+}
+
+
+
+#ai-chat-container {
+  height: 600px;
+  background-color: lightblue;
+  grid-column: 1;
+  grid-row: 1;
+  display: grid;
+  grid-template-rows: 10fr 1fr;
+  justify-content: center;
+}
+
+#ai-chat-container-bottom {
+  grid-row: 2;
+  display: flex;
+  align-items: center;
+}
+
+#chat-ai-button {
+  height: 50px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+#ai-chat-input{
+  width: 160px;
+  height: 50px;
+  margin-bottom: 10px;
+  border-radius: 10px;
 }
