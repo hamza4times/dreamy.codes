@@ -12,6 +12,7 @@
     "vite": "^8.0.12"
   },
   "dependencies": {
+    "monaco-editor": "^0.55.1",
     "page": "^1.11.6"
   }
 }
