@@ -58,6 +58,12 @@ const jsModel = monaco.editor.createModel(javascriptCode, "javascript");
 
 const cssModel = monaco.editor.createModel( cssCode, "css");
 
+export function updateCodeEditors(code){
+  htmlModel.setValue(code.html);
+  jsModel.setValue(code.js);
+  cssModel.setValue(code.css);
+}
+
 document.querySelector("#js-btn").addEventListener("click", () => {
     editor.setModel(jsModel);
   });

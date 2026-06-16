@@ -37,6 +37,6 @@ export async function askAI(prompt) {
       data.error?.message || "Request failed"
     );
   }
-
+  console.log(await response);
   return data.choices[0].message.content;
 }
