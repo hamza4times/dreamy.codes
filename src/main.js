@@ -19,8 +19,18 @@ export async function askAI(prompt) {
       },
       body: JSON.stringify({
         model: selectedModel,
-        max_tokens: 512,
+        max_tokens: 4096,
+
+        response_format: {
+          type: "json_object"
+        },
+
         messages: [
+          {
+            role: "system",
+            content:
+              "Return ONLY valid JSON."
+          },
           {
             role: "user",
             content: prompt
