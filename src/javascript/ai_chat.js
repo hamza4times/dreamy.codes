@@ -6,6 +6,8 @@ document.querySelector("#chat-ai-button").addEventListener("click", async () => 
     try {
       showLoading();
       const input = document.querySelector("#ai-chat-input");
+      addChatMsg(String(input.value), "user");
+      input.value = '';
       const prompt = `
       Generate a webpage.
 
@@ -41,7 +43,7 @@ document.querySelector("#chat-ai-button").addEventListener("click", async () => 
 
       updateCodeEditors(code);
 
-      console.log(String(code.extra_txt));
+      addChatMsg(String(code.extra_txt), "ai");
       
     } catch (err) {
       console.error(err);
@@ -49,4 +51,12 @@ document.querySelector("#chat-ai-button").addEventListener("click", async () => 
       hideLoading();
     }
 });
+
+export function addChatMsg(msgContent, origin){ // origin: options: user, ai
+  const chatContainer = document.querySelector('#message-container');
+  const msg = document.createElement('p');
+  msg.textContent = String(msgContent);
+  msg.setAttribute('id', `${origin}-message`);
+  chatContainer.appendChild(msg);
+}
 
