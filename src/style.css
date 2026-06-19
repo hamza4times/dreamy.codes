@@ -1,3 +1,19 @@
+/* :root{
+  --text: #0d0813;
+  --background: #faf8fd;
+  --primary: #8345cc;
+  --secondary: #b68ce6;
+  --accent: #9d5fe6;
+} */
+
+:root{
+  --text: oklch(14.76% 0.025 304.73);
+  --background: oklch(98.21% 0.007 304.24);
+  --primary: oklch(53.53% 0.200 300.91);
+  --secondary: oklch(71.41% 0.134 304.71);
+  --accent: oklch(61.69% 0.198 302.07);
+}
+
 body{
   display: grid;
   grid-template-columns: 25% 75%;
