@@ -9,11 +9,10 @@ document.querySelector("#chat-ai-button").addEventListener("click", async () => 
       const userPrompt = String(input.value);
       addChatMsg(userPrompt, "user");
       input.value = '';
-      getCodeEditors();
       const prompt = `
       Generate a webpage.
 
-      User prompt: ${input.value}
+      User prompt: ${userPrompt}
 
       Current code: ${JSON.stringify(getCodeEditors())}
 

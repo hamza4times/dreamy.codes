@@ -73,14 +73,20 @@ export function getCodeEditors(){
   return currentCode;
 }
 
-document.querySelector("#js-btn").addEventListener("click", () => {
+document.querySelector("#js-btn")?.addEventListener("click", () => {
     editor.setModel(jsModel);
+    document.querySelectorAll("#file-tabs button").forEach(btn => btn.classList.remove("active"));
+    document.querySelector("#js-btn").classList.add("active");
   });
 
-document.querySelector("#html-btn").addEventListener("click", () => {
+document.querySelector("#html-btn")?.addEventListener("click", () => {
     editor.setModel(htmlModel);
+    document.querySelectorAll("#file-tabs button").forEach(btn => btn.classList.remove("active"));
+    document.querySelector("#html-btn").classList.add("active");
   });
 
-document.querySelector("#css-btn").addEventListener("click", () => {
+document.querySelector("#css-btn")?.addEventListener("click", () => {
     editor.setModel(cssModel);
+    document.querySelectorAll("#file-tabs button").forEach(btn => btn.classList.remove("active"));
+    document.querySelector("#css-btn").classList.add("active");
   });

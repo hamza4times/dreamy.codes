@@ -1,32 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8"/>
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dreamy Codes</title>
 </head>
 
 <body>
-  <div class="editor-container">
 
-    <div id="file-tabs">
-      <button id="js-btn">Javascript</button>
-      <button id="html-btn">HTML</button>
-      <button id="css-btn">CSS</button>
-    </div>
-
-    <div id="editor">
-    </div>
-
-  </div>
-
-  <div id="ai-chat-container">
+  <!-- ============================================================
+       LEFT COLUMN - AI CHAT
+       (keeps all original IDs used by ai_chat.js / main.js)
+  ============================================================= -->
+  <aside id="ai-chat-container">
 
     <div id="message-container">
-      
+      <!-- messages are injected dynamically by ai_chat.js -->
     </div>
-    
-    <select id="model-select">
+
+    <div id="ai-chat-container-bottom">
+      <select id="model-select">
         <option value="openrouter/owl-alpha">Owl Alpha</option>
         <option value="nvidia/nemotron-3-ultra-550b-a55b:free">Nemotron 3 Ultra</option>
         <option value="nex-agi/nex-n2-pro:free">Nex-N2-Pro</option>
@@ -40,12 +33,87 @@
         <option value="google/gemma-4-26b-a4b-it:free">Gemma 4 26B</option>
       </select>
 
-    <div id="ai-chat-container-bottom">
-      <input id="ai-chat-input" placeholder="start chatting">
-      <button id="chat-ai-button">⏩</button>
-    
+      <div id="ai-chat-input-row">
+        <input id="ai-chat-input" placeholder="start chatting" autocomplete="off" />
+        <button id="chat-ai-button" title="Send">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <path d="M3 11l18-8-8 18-2-7-8-3z" fill="currentColor"/>
+          </svg>
+        </button>
+      </div>
     </div>
-  </div>
+
+  </aside>
+
+  <!-- ============================================================
+       MIDDLE COLUMN - CODE EDITOR
+       (keeps #file-tabs, #js-btn / #html-btn / #css-btn, #editor)
+  ============================================================= -->
+  <main class="editor-container">
+
+    <div id="file-tabs">
+      <button id="html-btn" class="tab-btn active" data-tab="html">
+        <span class="tab-icon html-icon" aria-hidden="true">&lt;/&gt;</span>
+        <span class="tab-label">index.html</span>
+      </button>
+      <button id="css-btn" class="tab-btn" data-tab="css">
+        <span class="tab-icon css-icon" aria-hidden="true">#</span>
+        <span class="tab-label">styles.css</span>
+      </button>
+      <button id="js-btn" class="tab-btn" data-tab="js">
+        <span class="tab-icon js-icon" aria-hidden="true">JS</span>
+        <span class="tab-label">script.js</span>
+      </button>
+    </div>
+
+    <div id="editor">
+      <!-- Monaco editor mounts here -->
+    </div>
+
+    <div id="console-bar">
+      <span class="console-dot"></span>
+      <span class="console-label">console</span>
+    </div>
+
+  </main>
+
+  <!-- ============================================================
+       RIGHT COLUMN - LIVE PREVIEW
+       (NEW - wire #run-btn to render editor contents into #preview-frame)
+  ============================================================= -->
+  <section id="preview-container" data-state="idle">
+
+    <div id="preview-toolbar">
+      <button id="run-btn" class="preview-tool-btn" title="Run" aria-label="Run">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+          <path d="M8 5v14l11-7z" fill="currentColor"/>
+        </svg>
+      </button>
+      <button id="eye-btn" class="preview-tool-btn" title="Toggle view" aria-label="View">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+          <path d="M12 5C7 5 3 12 3 12s4 7 9 7 9-7 9-7-4-7-9-7zm0 11a4 4 0 110-8 4 4 0 010 8z"
+                fill="currentColor"/>
+        </svg>
+      </button>
+      <button id="upload-btn" class="preview-tool-btn" title="Upload / Export" aria-label="Upload">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+          <path d="M12 16V4M5 11l7-7 7 7M4 20h16" stroke="currentColor"
+                stroke-width="2" fill="none" stroke-linecap="round"
+                stroke-linejoin="round"/>
+        </svg>
+      </button>
+
+      <span id="preview-status">LIVE PREVIEW</span>
+    </div>
+
+    <div id="preview-body">
+      <iframe id="preview-frame" title="Live Preview" sandbox="allow-scripts allow-same-origin"></iframe>
+      <div id="preview-placeholder">
+        <span>Press Run to preview your code</span>
+      </div>
+    </div>
+
+  </section>
 
   <script type="module" src="/src/main.js"></script>
 </body>
