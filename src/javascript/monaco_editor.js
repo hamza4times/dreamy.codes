@@ -64,6 +64,15 @@ export function updateCodeEditors(code){
   cssModel.setValue(code.css);
 }
 
+export function getCodeEditors(){
+  let currentCode = {
+    "html": htmlModel.getValue(),
+    "css": cssModel.getValue(),
+    "js": jsModel.getValue()
+  }
+  return currentCode;
+}
+
 document.querySelector("#js-btn").addEventListener("click", () => {
     editor.setModel(jsModel);
   });

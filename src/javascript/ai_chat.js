@@ -1,18 +1,21 @@
 import { askAI } from "../main.js";
-import {updateCodeEditors} from "../javascript/monaco_editor.js";
+import {updateCodeEditors, getCodeEditors} from "../javascript/monaco_editor.js";
 import {showLoading, hideLoading} from "../javascript/loading.js";
 
 document.querySelector("#chat-ai-button").addEventListener("click", async () => {
     try {
       showLoading();
       const input = document.querySelector("#ai-chat-input");
-      addChatMsg(String(input.value), "user");
+      const userPrompt = String(input.value);
+      addChatMsg(userPrompt, "user");
       input.value = '';
+      getCodeEditors();
       const prompt = `
       Generate a webpage.
 
-      User prompt:
-      ${input.value}
+      User prompt: ${input.value}
+
+      Current code: ${JSON.stringify(getCodeEditors())}
 
       Return ONLY valid JSON.
 
@@ -23,10 +26,10 @@ document.querySelector("#chat-ai-button").addEventListener("click", async () => 
       4. Escape all quotes correctly.
       5. html, css, and js must be valid JSON strings.
 
-      Format:
+      Example:
 
       {
-        "html": "<div>Hello</div>",
+        "html": "<div>Put html here</div>",
         "css": "body { margin: 0; }",
         "js": "console.log('hello');",
         "extra_txt": "Description here"
@@ -39,7 +42,16 @@ document.querySelector("#chat-ai-button").addEventListener("click", async () => 
         console.error("MODEL RESPONSE:", reply);
         throw new Error("Model returned text instead of JSON");
       }
+      
       const code = JSON.parse(reply);
+
+      if (
+        typeof code.html !== "string" ||
+        typeof code.css !== "string" ||
+        typeof code.js !== "string"
+      ) {
+        throw new Error("Invalid AI response format");
+      }
 
       updateCodeEditors(code);
 
