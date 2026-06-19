@@ -1,6 +1,7 @@
 import "./style.css";
 import {createEditor} from "./javascript/monaco_editor.js";
 import "./javascript/ai_chat.js";
+import "./javascript/preview.js";
 
 createEditor();
 
