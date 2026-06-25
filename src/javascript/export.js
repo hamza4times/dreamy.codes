@@ -33,12 +33,19 @@ export async function downloadProjectZip(html, css, js, name) {
   URL.revokeObjectURL(url);
 }
 
+const exportPopup = document.querySelector('#exportPopup');
+const closeBtn = document.querySelector('#closeBtn');
+const fileNameInput = document.querySelector('#file-name-input');
+const downloadFileBtn = document.querySelector('#download-file-btn');
 
 document.querySelector('#upload-btn').addEventListener('click', () => {
-    let code = getCodeEditors();
-    downloadProjectZip(code.html, code.css, code.js, promptName());
+    exportPopup.classList.add('active');
+    downloadFileBtn.addEventListener('click', () => {
+        let code = getCodeEditors();
+        downloadProjectZip(code.html, code.css, code.js, fileNameInput.value);
+    });
 });
 
-function promptName(){
-    return "untitled";
-}
+closeBtn.addEventListener('click', () => {
+  exportPopup.classList.remove('active');
+});
